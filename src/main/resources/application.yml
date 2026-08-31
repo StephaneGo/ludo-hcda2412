@@ -6,3 +6,6 @@ spring:
     host: localhost
     port: 27017
     database: LUDO_DB
+  data:
+    mongodb:
+      auto-index-creation: true

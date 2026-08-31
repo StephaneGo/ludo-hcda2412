@@ -1,6 +1,6 @@
 package fr.eni.ludotheque.dal;
 
-import fr.eni.ludotheque.bo.Exemplaire;
+import fr.eni.ludotheque.bo.Genre;
 import fr.eni.ludotheque.bo.Jeu;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,19 +12,21 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class ExemplaireRepositoryTest {
-
-    @Autowired
-    private ExemplaireRepository exemplaireRepository;
+public class JeuRepositoryTest {
 
     @Autowired
     private JeuRepository jeuRepository;
 
     @Test
-    @DisplayName("test d'insertion d'un nouvel exemplaire")
-    void testInsertionExemplaireCasDroit(){
+    @DisplayName("test d'insertion d'un jeu cas ok")
+    void testInsertionJeuCasDroit(){
         //Arrange : préparation du test
-        exemplaireRepository.deleteAll();
+        jeuRepository.deleteAll();
+        Genre cartes = Genre.builder()
+                .noGenre(1L)
+                .libelle("Cartes")
+                .build();
+
         Jeu jeu = Jeu.builder()
                 .titre("Foret mixte")
                 .description("description du jeu foret mixte")
@@ -33,22 +35,15 @@ public class ExemplaireRepositoryTest {
                 .tarifJour(4.5f)
                 .reference("ref-foret-mixte")
                 .build();
-        Jeu savedJeu = jeuRepository.save(jeu);
-
-        Exemplaire exemplaire = Exemplaire.builder()
-                .codebarre("101")
-                .louable(true)
-                .jeu(savedJeu)
-                .build();
+        jeu.addGenre(cartes);
 
         //Act : appel de la méthode à tester
-        Exemplaire saved = exemplaireRepository.save(exemplaire);
+        Jeu jeuSaved = jeuRepository.save(jeu);
 
         //Assert: Vérifier que le résultat donné par la méthode est le bon
-        Optional<Exemplaire> exemplaireOpt = exemplaireRepository.findById(saved.getNoExemplaire());
-        assertThat(exemplaireOpt.isPresent()).isTrue();
-        assertThat(exemplaireOpt.get().getCodebarre()).isEqualTo("101");
-        assertThat(exemplaireOpt.get().getJeu().getTitre()).isEqualTo("Foret mixte");
+        Optional<Jeu> opt = jeuRepository.findById(jeuSaved.getNoJeu());
+        assertThat(opt.isPresent()).isTrue();
+        assertThat(opt.get().getTitre()).isEqualTo("Foret mixte");
 
     }
 

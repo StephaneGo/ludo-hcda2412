@@ -1,16 +1,21 @@
 package fr.eni.ludotheque.bo;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@Document("jeux")
 public class Jeu {
-    @NonNull
-    private Long noJeu;
+
+    @Id
+    private String noJeu;
+
     @NonNull
     private String titre;
     @NonNull
@@ -21,6 +26,10 @@ public class Jeu {
     @NonNull
     private Float tarifJour;
 
-    private List<Genre> genres;
+    private @Builder.Default List<Genre> genres = new ArrayList<>();
+
+    public void addGenre(Genre genre){
+        genres.add(              genre        );
+    }
 
 }
