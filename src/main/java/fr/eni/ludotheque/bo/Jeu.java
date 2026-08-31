@@ -19,7 +19,7 @@ public class Jeu {
     private String description;
     private int duree;
     @NonNull
-    private float tarifJour;
+    private Float tarifJour;
 
     private List<Genre> genres;
 

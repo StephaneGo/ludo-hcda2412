@@ -12,7 +12,7 @@ public class Exemplaire {
     @NonNull
     private String codebarre;
     @NonNull
-    private boolean louable;
+    private Boolean louable;
 
     @NonNull
     private Jeu jeu;
