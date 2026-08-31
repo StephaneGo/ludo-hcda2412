@@ -2,3 +2,7 @@ spring:
   application:
     name: ludotheque
 
+  mongodb:
+    host: localhost
+    port: 27017
+    database: LUDO_DB
