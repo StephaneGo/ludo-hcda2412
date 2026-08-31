@@ -13,5 +13,7 @@ public class Client {
     private String nom;
     @NonNull
     private String prenom;
+    @NonNull
+    private String email;
     private String telephone;
 }

@@ -14,4 +14,7 @@ public class Exemplaire {
     @NonNull
     private boolean louable;
 
+    @NonNull
+    private Jeu jeu;
+
 }

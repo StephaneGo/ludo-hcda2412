@@ -6,10 +6,10 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Location {
-    @NonNull
     private Long noLocation;
 
     @NonNull
@@ -18,4 +18,11 @@ public class Location {
     private LocalDateTime dateRetour;
 
     private float tarifJour;
+
+    @NonNull
+    private Client client;
+
+    @NonNull
+    private Exemplaire exemplaire;
+
 }
