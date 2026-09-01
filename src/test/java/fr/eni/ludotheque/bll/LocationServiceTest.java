@@ -7,6 +7,7 @@ import fr.eni.ludotheque.dal.ExemplaireRepository;
 import fr.eni.ludotheque.dal.LocationRepository;
 import fr.eni.ludotheque.dto.LocationRequestDto;
 import fr.eni.ludotheque.dto.LocationResponseDto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,12 @@ public class LocationServiceTest {
 
     @Autowired
     private LocationRepository locationRepository;
+
+    @BeforeEach
+    public void reinitIndexes()
+    {
+       //locationRepository.deleteAll();
+    }
 
     @Test
     @DisplayName("test de création d'une location cas ok")
