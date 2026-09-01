@@ -1,9 +1,11 @@
 package fr.eni.ludotheque.conf;
 
 
+import fr.eni.ludotheque.bo.Client;
 import fr.eni.ludotheque.bo.Exemplaire;
 import fr.eni.ludotheque.bo.Genre;
 import fr.eni.ludotheque.bo.Jeu;
+import fr.eni.ludotheque.dal.ClientRepository;
 import fr.eni.ludotheque.dal.ExemplaireRepository;
 import fr.eni.ludotheque.dal.GenreRepository;
 import fr.eni.ludotheque.dal.JeuRepository;
@@ -23,6 +25,9 @@ public class InitJeuEssai {
 
     @Autowired
     private ExemplaireRepository exemplaireRepository;
+
+    @Autowired
+    private ClientRepository clientRepository;
 
     @Bean
     public CommandLineRunner jeuEssai(){
@@ -83,6 +88,16 @@ public class InitJeuEssai {
                 //Act : appel de la méthode à tester
                 Exemplaire savedFM = exemplaireRepository.save(exemplaireFM);
 
+
+                //Création d'un client
+                clientRepository.deleteAll();
+                Client bob = Client.builder()
+                        .email("bob@eni.fr")
+                        .nom("Dupont")
+                        .prenom("Bob")
+                        .telephone("0625349220")
+                        .build();
+                clientRepository.save(bob);
             }
         };
     }
