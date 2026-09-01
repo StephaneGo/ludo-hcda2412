@@ -1,6 +1,8 @@
 package fr.eni.ludotheque.bo;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
@@ -9,8 +11,10 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Builder
+@Document("locations")
 public class Location {
-    private Long noLocation;
+    @Id
+    private String noLocation;
 
     @NonNull
     private LocalDateTime dateDebut;
