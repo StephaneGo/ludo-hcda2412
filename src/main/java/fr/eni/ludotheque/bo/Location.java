@@ -3,7 +3,6 @@ package fr.eni.ludotheque.bo;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.time.LocalDateTime;
 
@@ -25,11 +24,11 @@ public class Location {
     private float tarifJour;
 
     @NonNull
-    @DocumentReference
+    //@DocumentReference
     private Client client;
 
     @NonNull
-    @DocumentReference
+    //@DocumentReference
     private Exemplaire exemplaire;
 
 }
