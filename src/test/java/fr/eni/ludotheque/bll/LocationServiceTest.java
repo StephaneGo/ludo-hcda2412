@@ -2,6 +2,7 @@ package fr.eni.ludotheque.bll;
 
 import fr.eni.ludotheque.bo.Client;
 import fr.eni.ludotheque.bo.Exemplaire;
+import fr.eni.ludotheque.conf.InitJeuEssai;
 import fr.eni.ludotheque.dal.ClientRepository;
 import fr.eni.ludotheque.dal.ExemplaireRepository;
 import fr.eni.ludotheque.dal.LocationRepository;
@@ -17,6 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class LocationServiceTest {
+    @Autowired
+    private InitJeuEssai initJeuEssai;
 
     @Autowired
     private LocationService locationService;
@@ -32,7 +35,7 @@ public class LocationServiceTest {
     @BeforeEach
     public void reinitIndexes()
     {
-       //locationRepository.deleteAll();
+        initJeuEssai.initialiserJeuEssai();
     }
 
     @Test

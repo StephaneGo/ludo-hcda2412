@@ -6,33 +6,21 @@ import fr.eni.ludotheque.bo.Exemplaire;
 import fr.eni.ludotheque.bo.Genre;
 import fr.eni.ludotheque.bo.Jeu;
 import fr.eni.ludotheque.dal.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
+@AllArgsConstructor
 public class InitJeuEssai {
 
-    @Autowired
     private GenreRepository genreRepository;
-
-    @Autowired
     private JeuRepository jeuRepository;
-
-    @Autowired
     private ExemplaireRepository exemplaireRepository;
-
-    @Autowired
     private ClientRepository clientRepository;
-    @Autowired
     private LocationRepository locationRepository;
 
-    @Bean
-    public CommandLineRunner jeuEssai(){
-        return new CommandLineRunner() {
-            @Override
-            public void run(String... args) throws Exception {
+    public void initialiserJeuEssai(){
+
                 //Jeu essai
                 //Création des genres
                 Genre cartes = Genre.builder()
@@ -100,7 +88,6 @@ public class InitJeuEssai {
 
                 //RAZ locations
                // locationRepository.deleteAll();
-            }
-        };
-    }
+           }
 }
+

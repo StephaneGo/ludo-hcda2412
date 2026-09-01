@@ -33,6 +33,8 @@ public class LocationResponseDto {
     public static LocationResponseDto toDto(Location location){
         return LocationResponseDto.builder()
                 .noClient(location.getClient().getNoClient())
+                .nom(location.getClient().getNom())
+                .prenom(location.getClient().getPrenom())
                 .email(location.getClient().getEmail())
                 .noExemplaire(location.getExemplaire().getNoExemplaire())
                 .codebarre(location.getExemplaire().getCodebarre())
