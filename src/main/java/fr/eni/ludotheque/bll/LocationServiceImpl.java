@@ -9,6 +9,7 @@ import fr.eni.ludotheque.dal.LocationRepository;
 import fr.eni.ludotheque.dto.LocationRequestDto;
 import fr.eni.ludotheque.dto.LocationResponseDto;
 import fr.eni.ludotheque.exceptions.ClientNotFound;
+import fr.eni.ludotheque.exceptions.ExemplaireNonLouable;
 import fr.eni.ludotheque.exceptions.ExemplaireNotFound;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,10 @@ public class LocationServiceImpl implements  LocationService{
 
         Exemplaire exemplaire = exemplaireRepository.findByCodebarre(locationRequestDto.getCodebarre())
                 .orElseThrow(ExemplaireNotFound::new);
+
+        if(!exemplaire.getLouable()){
+            throw new ExemplaireNonLouable();
+        }
 
         Location newLocation = Location.builder()
                 .client(client)

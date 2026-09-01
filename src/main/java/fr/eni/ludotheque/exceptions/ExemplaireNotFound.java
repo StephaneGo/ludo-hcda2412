@@ -1,5 +1,5 @@
 package fr.eni.ludotheque.exceptions;
 
-public class ExemplaireNotFound extends RuntimeException{
+public class ExemplaireNotFound extends BusinessException{
 
 }
