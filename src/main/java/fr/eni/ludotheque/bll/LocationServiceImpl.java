@@ -36,6 +36,7 @@ public class LocationServiceImpl implements  LocationService{
                 .client(client)
                 .exemplaire(exemplaire)
                 .dateDebut(LocalDateTime.now())
+                .tarifJour(exemplaire.getJeu().getTarifJour())
                 .build();
 
         Location savedLocation = locationRepository.save(newLocation);

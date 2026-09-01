@@ -5,10 +5,7 @@ import fr.eni.ludotheque.bo.Client;
 import fr.eni.ludotheque.bo.Exemplaire;
 import fr.eni.ludotheque.bo.Genre;
 import fr.eni.ludotheque.bo.Jeu;
-import fr.eni.ludotheque.dal.ClientRepository;
-import fr.eni.ludotheque.dal.ExemplaireRepository;
-import fr.eni.ludotheque.dal.GenreRepository;
-import fr.eni.ludotheque.dal.JeuRepository;
+import fr.eni.ludotheque.dal.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +25,8 @@ public class InitJeuEssai {
 
     @Autowired
     private ClientRepository clientRepository;
+    @Autowired
+    private LocationRepository locationRepository;
 
     @Bean
     public CommandLineRunner jeuEssai(){
@@ -98,6 +97,9 @@ public class InitJeuEssai {
                         .telephone("0625349220")
                         .build();
                 clientRepository.save(bob);
+
+                //RAZ locations
+                locationRepository.deleteAll();
             }
         };
     }
