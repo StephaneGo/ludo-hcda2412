@@ -1,10 +1,7 @@
 package fr.eni.ludotheque.conf;
 
 
-import fr.eni.ludotheque.bo.Client;
-import fr.eni.ludotheque.bo.Exemplaire;
-import fr.eni.ludotheque.bo.Genre;
-import fr.eni.ludotheque.bo.Jeu;
+import fr.eni.ludotheque.bo.*;
 import fr.eni.ludotheque.dal.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,6 +15,7 @@ public class InitJeuEssai {
     private ExemplaireRepository exemplaireRepository;
     private ClientRepository clientRepository;
     private LocationRepository locationRepository;
+    private UtilisateurRepository utilisateurRepository;
 
     public void initialiserJeuEssai(){
 
@@ -88,6 +86,15 @@ public class InitJeuEssai {
 
                 //RAZ locations
                // locationRepository.deleteAll();
+
+                //init utilisateur
+        utilisateurRepository.deleteAll();
+        Utilisateur utilisateur = Utilisateur.builder()
+                .login("employe1@magasin.fr")
+                .motDePasse("{bcrypt}$2a$10$bFttQ3dCI37aXh3i1jmBgOgucBZbGkXKTcj0LhkDby3NgCWPSGz/.") //Pa$$w0rd
+                .build();
+
+            utilisateurRepository.save(utilisateur);
            }
 }
 
