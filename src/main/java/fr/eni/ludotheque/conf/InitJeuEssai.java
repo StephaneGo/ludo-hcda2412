@@ -99,7 +99,7 @@ public class InitJeuEssai {
                 clientRepository.save(bob);
 
                 //RAZ locations
-                locationRepository.deleteAll();
+               // locationRepository.deleteAll();
             }
         };
     }
