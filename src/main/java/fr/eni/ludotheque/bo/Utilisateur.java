@@ -19,4 +19,5 @@ public class Utilisateur {
     @Indexed(unique = true)
     private String login;
     private String motDePasse;
+    private String role;
 }

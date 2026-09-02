@@ -22,12 +22,10 @@ public class WebSecurityConfig {
 		//.csrf(AbstractHttpConfigurer::disable)
 		// .csrf(withDefaults())
 			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers(HttpMethod.GET, "/api/locations").permitAll()
-//				.requestMatchers( "/login").permitAll()
-				.anyRequest().authenticated()
+				.requestMatchers(HttpMethod.POST, "/api/locations").hasRole("EMPLOYE")
+				.anyRequest().denyAll()
 			)
 			.httpBasic(Customizer.withDefaults());
-//			.logout((logout) -> logout.permitAll());
 
 		return http.build();
 	}
@@ -39,16 +37,4 @@ public class WebSecurityConfig {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 
-	
-//	@Bean
-//	public UserDetailsService userDetailsService() {
-//		UserDetails user =
-//			 User.withDefaultPasswordEncoder()
-//				.username("user")
-//				.password("password")
-//				.roles("USER")
-//				.build();
-//
-//		return new InMemoryUserDetailsManager(user);
-//	}
 }

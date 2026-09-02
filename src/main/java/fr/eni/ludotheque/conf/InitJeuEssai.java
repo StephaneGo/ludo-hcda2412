@@ -92,9 +92,17 @@ public class InitJeuEssai {
         Utilisateur utilisateur = Utilisateur.builder()
                 .login("employe1@magasin.fr")
                 .motDePasse("{bcrypt}$2a$10$bFttQ3dCI37aXh3i1jmBgOgucBZbGkXKTcj0LhkDby3NgCWPSGz/.") //Pa$$w0rd
+                .role("EMPLOYE")
+                .build();
+        utilisateurRepository.save(utilisateur);
+
+        Utilisateur utilisateur2 = Utilisateur.builder()
+                .login("patron@magasin.fr")
+                .motDePasse("{bcrypt}$2a$10$bFttQ3dCI37aXh3i1jmBgOgucBZbGkXKTcj0LhkDby3NgCWPSGz/.") //Pa$$w0rd
+                .role("ADMIN")
                 .build();
 
-            utilisateurRepository.save(utilisateur);
+            utilisateurRepository.save(utilisateur2);
            }
 }
 
